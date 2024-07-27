@@ -9,8 +9,8 @@
             - price
             - desc
             - tags
-            - weight
-            - flag: new
+            -- weight --
+            - flag: new , Feature
 
         Category:
             - name
