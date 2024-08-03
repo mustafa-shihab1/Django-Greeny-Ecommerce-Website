@@ -3,6 +3,7 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django.utils.text import slugify 
 
 # Create your models here.
 
@@ -20,9 +21,15 @@ class Product(models.Model):
     tags = ''
     flag = models.CharField(_("Flag"), max_length=10, choices=FLAG_TYPE)
     category = models.ForeignKey('Category', related_name='product_category', verbose_name=_("Category"), on_delete=models.SET_NULL, null=True, blank= True)
+    slug = models.SlugField(_("Slug"), null=True, blank= True)
+
+    def save(self, *args,**kwargs):
+        self.slug = slugify(self.name)
+        super(Product, self).save(*args, **kwargs)
+
     def __str__(self):
        return self.name
-
+    
 
 class ProductImages(models.Model):
     product = models.ForeignKey(Product, verbose_name=_("Product"), related_name='product_image', on_delete=models.CASCADE)
@@ -46,7 +53,7 @@ class Category(models.Model):
 
 class Review(models.Model):
     user = models.ForeignKey(User,verbose_name=_("User"), related_name='review_author', on_delete=models.SET_NULL, null=True, blank=True)
-    product = models.ForeignKey(Product ,verbose_name=_("Product"), related_name='product_review', on_delete=models.SET_NULL, null=True, blank=True)
+    product = models.ForeignKey(Product ,verbose_name=_("Product"), related_name='product_review', on_delete=models.CASCADE)
     review = models.TextField(_("Review"), max_length=500)
     rate = models.IntegerField(_("Rate"), validators=[
         MinValueValidator(0),
