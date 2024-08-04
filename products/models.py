@@ -3,7 +3,8 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
-from django.utils.text import slugify 
+from django.utils.text import slugify
+from taggit.managers import TaggableManager
 
 # Create your models here.
 
@@ -18,7 +19,7 @@ class Product(models.Model):
     brand = models.ForeignKey('Brand', related_name='product_brand', verbose_name=_("Brand"), on_delete=models.SET_NULL, null=True, blank= True)
     price = models.FloatField(_("Price"))
     desc = models.TextField(_("Desc"), max_length=10000)
-    tags = ''
+    tags = TaggableManager(blank=True)
     flag = models.CharField(_("Flag"), max_length=10, choices=FLAG_TYPE)
     category = models.ForeignKey('Category', related_name='product_category', verbose_name=_("Category"), on_delete=models.SET_NULL, null=True, blank= True)
     slug = models.SlugField(_("Slug"), null=True, blank= True)
