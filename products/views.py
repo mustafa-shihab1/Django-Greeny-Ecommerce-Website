@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product, ProductImages, Review, Category, Brand
+from django.db.models import Count
 # Create your views here.
 
 
@@ -25,7 +26,16 @@ class CategoryList(ListView):
     model = Category
     paginate_by = 1
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["categories"] = Category.objects.all().annotate(product_count=Count('product_category') )
+        return context
 
 class BrandList(ListView):
     model = Brand
     paginate_by = 1
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["brands"] = Brand.objects.all().annotate(product_count=Count('product_brand') )
+        return context
