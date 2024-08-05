@@ -23,6 +23,9 @@ class ProductDetail(DetailView):
 
 class CategoryList(ListView):
     model = Category
+    paginate_by = 1
+
 
 class BrandList(ListView):
     model = Brand
+    paginate_by = 1
