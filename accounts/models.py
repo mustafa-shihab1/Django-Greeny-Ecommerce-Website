@@ -2,13 +2,23 @@ from django.db import models
 from settings.models import Country, City
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='Profile', on_delete= models.CASCADE)
-    image = models.ImageField(upload_to='profile/')
+    image = models.ImageField(upload_to='profile/', null=True, blank=True)
 
+
+# create user -----> create profile
+# sender: user   -  instance: data from user   -   created: boolean only TRUE in case of signup   -  action-> create profile
+# when django user (created) and (saved), the 'create_profile' function will be called and create new profile for that user
+@receiver(post_save, sender=User)
+def create_profile(sender, instance, created,**kewargs):
+    if created:
+        Profile.objects.create( user = instance )
 
 DATA_TYPE=(
     ('Home','Home'),
