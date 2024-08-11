@@ -11,6 +11,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, related_name='Profile', on_delete= models.CASCADE)
     image = models.ImageField(upload_to='profile/', null=True, blank=True)
 
+    def __str__(self):
+        return self.user.username
+
 
 # create user -----> create profile
 # sender: user   -  instance: data from user   -   created: boolean only TRUE in case of signup   -  action-> create profile
@@ -30,13 +33,17 @@ DATA_TYPE=(
 
 
 class UserPhoneNumber(models.Model):
-    user = models.OneToOneField(User, related_name='UserPhone', on_delete= models.CASCADE)
+    user = models.ForeignKey(User, related_name='UserPhone', on_delete= models.CASCADE)
     phone_number = models.CharField(max_length=15)
     type = models.CharField(max_length=10, choices=DATA_TYPE)
 
+    def __str__(self):
+        return f"{self.user.username} - {self.type}"
+
+
 
 class UserAddress(models.Model):
-    user = models.OneToOneField(User, related_name='UserAddress', on_delete= models.CASCADE)
+    user = models.ForeignKey(User, related_name='UserAddress', on_delete= models.CASCADE)
     type = models.CharField(max_length=10, choices=DATA_TYPE)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, related_name='user_country', null= True)
     city = models.ForeignKey(City, on_delete=models.SET_NULL, related_name='user_city', null= True)
@@ -44,3 +51,7 @@ class UserAddress(models.Model):
     region = models.CharField(_("Region"), max_length=50)
     street = models.CharField(_("Street"), max_length=50)
     notes = models.TextField(_("Notes"), max_length=300, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.type}"
+    
