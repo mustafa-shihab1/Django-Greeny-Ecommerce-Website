@@ -23,7 +23,7 @@ urlpatterns = [
     path('accounts/',include('accounts.urls',namespace='accounts')),
     path('products/',include('products.urls',namespace='products')),
     path('summernote/', include('django_summernote.urls')),
-    path('accounts/',include('django.contrib.auth.urls')),
+    path('accounts/',include('django.contrib.auth.urls')), # django-auth-views url
 
 ]
 
