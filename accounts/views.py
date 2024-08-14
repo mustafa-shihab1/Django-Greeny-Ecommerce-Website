@@ -54,3 +54,8 @@ def user_activate(request, username):
       form = UserActivateForm()
 
    return render(request, 'registration/activate.html', {'form':form})
+
+
+def profile(request):
+   profile = Profile.objects.get(user=request.user)   # request.user: means the logged in user
+   return render(request,'registration/profile.html',{'profile':profile})
