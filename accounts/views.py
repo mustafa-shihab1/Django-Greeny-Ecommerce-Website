@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, UserActivateForm
-from .models import Profile
+from .models import Profile, UserPhoneNumber, UserAddress
 from django.core.mail import send_mail
 
 # Create your views here.
@@ -58,4 +58,6 @@ def user_activate(request, username):
 
 def profile(request):
    profile = Profile.objects.get(user=request.user)   # request.user: means the logged in user
-   return render(request,'registration/profile.html',{'profile':profile})
+   phone_number = UserPhoneNumber.objects.filter(user=request.user)
+   user_address = UserAddress.objects.filter(user=request.user)
+   return render(request,'registration/profile.html',{'profile':profile, 'phone_number':phone_number, 'user_address':user_address})

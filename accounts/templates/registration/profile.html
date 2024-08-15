@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 
 
+{% block title %}
+    My Profile
+{% endblock title %}
+    
+
 {% block body %}
         
         <!--=====================================
@@ -36,24 +41,24 @@
                                 <div class="row">
                                     <div class="col-lg-2">
                                         <div class="profile-image">
-                                            <a href="#"><img src="images/user.png" alt="user"></a>
+                                            <a href="#"><img src="{{profile.image.url}}" width="170" alt="user"></a>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">name</label>
-                                            <input class="form-control" type="text" value="Miron Mahmud">
+                                            <input class="form-control" type="text" value="{{profile.user.username}}">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="form-label">Email</label>
-                                            <input class="form-control" type="email" value="mironcoder@gmail.com">
+                                            <input class="form-control" type="email" value="{{profile.user.email}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-2">
                                         <div class="profile-btn">
-                                            <a href="change-password.html">change pass.</a>
+                                            <a href="{% url 'password_change' %}">change pass.</a>
                                         </div>
                                     </div>
                                 </div>
@@ -68,36 +73,20 @@
                             </div>
                             <div class="account-content">
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card contact active">
-                                            <h6>primary</h6>
-                                            <p>+8801838288389</p>
-                                            <ul>
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
+                                    
+                                    {% for number in phone_number %}
+                                        <div class="col-md-6 col-lg-4 alert fade show">
+                                            <div class="profile-card contact">
+                                                <h6>{{number.type}}</h6>
+                                                <p>{{number.phone_number}}</p>
+                                                <ul>
+                                                    <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
+                                                    <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card contact">
-                                            <h6>secondary</h6>
-                                            <p>+8801941101915</p>
-                                            <ul>
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card contact">
-                                            <h6>secondary</h6>
-                                            <p>+8801747875727</p>
-                                            <ul>
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#contact-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
+                                        
                                 </div>
                             </div>
                         </div>
@@ -110,36 +99,21 @@
                             </div>
                             <div class="account-content">
                                 <div class="row">
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address active">
-                                            <h6>Home</h6>
-                                            <p>jalkuri, fatullah, narayanganj-1420. word no-09, road no-17/A</p>
-                                            <ul class="user-action">
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
+                                    
+                                    {% for address in user_address %}
+                                        <div class="col-md-6 col-lg-4 alert fade show">
+                                            <div class="profile-card address">
+                                                <h6>{{address.type}}</h6>
+                                                <p>{{address.country}}, {{address.city}}, {{address.state}}, {{address.region}}, {{address.street}}.</p>
+                                                <ul class="user-action">
+                                                    <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
+                                                    <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
+                                                </ul>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address">
-                                            <h6>Office</h6>
-                                            <p>east tejturi bazar, dhaka-1200. word no-04, road no-13/c, house no-4/b</p>
-                                            <ul class="user-action">
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-lg-4 alert fade show">
-                                        <div class="profile-card address">
-                                            <h6>Bussiness</h6>
-                                            <p>kawran bazar, dhaka-1100. word no-02, road no-13/d, house no-7/m</p>
-                                            <ul class="user-action">
-                                                <li><button class="edit icofont-edit" title="Edit This" data-bs-toggle="modal" data-bs-target="#address-edit"></button></li>
-                                                <li><button class="trash icofont-ui-delete" title="Remove This" data-bs-dismiss="alert"></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    {% endfor %}
+                                        
+                                    
                                 </div>
                             </div>
                         </div>
