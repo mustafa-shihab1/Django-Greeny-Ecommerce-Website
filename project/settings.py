@@ -147,3 +147,5 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'mshehab6@smail.ucas.edu.ps'
 EMAIL_HOST_PASSWORD = 'czqmdsxjndclperl'
 #DEFAULT_FROM_EMAIL = ''
+
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
