@@ -23,3 +23,19 @@ class City(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Company(models.Model):
+    name = models.CharField(_("Name"), max_length=50)
+    logo = models.ImageField(_("Logo"), upload_to='company/')
+    about = models.CharField(_("About"), max_length=300)
+    fb_link = models.URLField(_("Facebook Link"), blank=True, null=True)
+    tw_link = models.URLField(_("Twitter Link"), blank=True, null=True)
+    ins_link = models.URLField(_("Instagram Link"), blank=True, null=True)
+    email = models.EmailField(_("Email"), max_length=30)
+    phone_number = models.CharField(_("Phone Number"), max_length=20)
+    address = models.CharField(_("Address"), max_length=100)
+
+    def __str__(self):
+        return self.name
+    
