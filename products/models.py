@@ -23,6 +23,10 @@ class Product(models.Model):
     flag = models.CharField(_("Flag"), max_length=10, choices=FLAG_TYPE)
     category = models.ForeignKey('Category', related_name='product_category', verbose_name=_("Category"), on_delete=models.SET_NULL, null=True, blank= True)
     slug = models.SlugField(_("Slug"), null=True, blank= True)
+    image = models.ImageField(_("Image"), upload_to='Product/')
+
+    # class Meta:
+    #     order_by = 'name'
 
     def save(self, *args,**kwargs):
         self.slug = slugify(self.name)
