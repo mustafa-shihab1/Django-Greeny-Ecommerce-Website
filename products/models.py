@@ -13,6 +13,20 @@ FLAG_TYPE = (
     ('Feature', 'Feature'),
 )
 
+class ProductQueryset(models.QuerySet):
+    def price_greater_than(self,price):
+        return self.filter(price__gt=price)
+    
+
+class ProductManager(models.Manager):
+    def get_queryset(self):
+        return ProductQueryset(self.model, using=self._db)
+    
+    def price_greater_than(self,price):
+        return self.get_queryset().price_greater_than(price)
+
+# USE -> In views.py: queryset = Product.objects.price_greater_than(30)  
+
 class Product(models.Model):
     name = models.CharField(_("Name"), max_length=100)
     sku = models.IntegerField(_("SKU"))
@@ -27,6 +41,7 @@ class Product(models.Model):
 
     # class Meta:
     #     order_by = 'name'
+    objects = ProductManager()
 
     def save(self, *args,**kwargs):
         self.slug = slugify(self.name)
