@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
+from django.urls import reverse
 
 # Create your models here.
 
@@ -47,6 +48,12 @@ class Product(models.Model):
         self.slug = slugify(self.name)
         super(Product, self).save(*args, **kwargs)
 
+    # instance method
+    def get_absolute_url(self):
+        #   url 'base-url:sub-url' filed-name
+        return reverse('products:product_detail', kwargs={'slug': self.slug})
+    
+    
     def __str__(self):
        return self.name
     
