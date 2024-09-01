@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Product, ProductImages, Review, Category, Brand
-from django.db.models import Count, Q
-
+from django.db.models import F, Q, Func, Value, CharField
+from django.db.models.aggregates import Count, Min, Max, Avg, Sum
+from django.db.models.functions import Concat
 
 # Create your views here.
 
@@ -56,7 +57,8 @@ class BrandDetail(DetailView):
 
 
 def product_list(request):
-    queryset = Product.objects.filter(Q(price__lt=20) | Q(name__contains='fox'))        
+    queryset = Product.objects.price_greater_than(30)    # queryset cache (good performance)
+    print(queryset)    
     return render(request,'products/list.html',{'data': queryset })
 
 #(1) conditions: price__gt=20 || price__lt=20 || price__range=(20,50) ||
@@ -90,17 +92,21 @@ def product_list(request):
 # queryset = Product.objects.select_related('category').select_related('brand').all()  foriegn-keys >> join with 'Category' and 'Brand' tables
 
 ########################################################################################
+# aggregation functions => Count, Min, Max, Avg, Sum                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Min, Max, Avg, Sum
+# EX: queryset = Product.objects.aggregate(mySum=Sum('price'),myAvg=(Avg('price'))) ; print(queryset)  
 # 
+# ## @@ Annotation @@ #
+# to create new field accordding to a specific operation without exist in db.
+#
+#Examples::
+#
+# Math-operation:
+# queryset = Product.objects.annotate(price_tax=F('price')*0.8)  
 # 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-
+# Conctatination:
+# queryset = Product.objects.annotate(
+#   full_name = Concat(
+#     'name','sku', output_field=CharField()
+#     )
+# ) 
+#
