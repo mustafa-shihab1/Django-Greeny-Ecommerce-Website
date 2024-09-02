@@ -22,6 +22,7 @@ class ProductDetail(DetailView):
         # (for cbv) self.get_object() -> this return the current openned item
         context["images"] = ProductImages.objects.filter(product=self.get_object()) 
         context["reviews"] = Review.objects.filter(product=self.get_object())
+        context["related"] = Product.objects.filter(category=self.get_object().category)[0:10]
         return context
     
 
