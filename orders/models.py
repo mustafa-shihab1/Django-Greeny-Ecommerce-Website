@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 from products.models import Product
 from utils.generate_code import generate_code
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -15,6 +16,7 @@ STATUS_CHOICES = (
 )
 
 class Order(models.Model):
+    user = models.ForeignKey(User, verbose_name=_("User"),related_name='user_orders', on_delete=models.SET_NULL, null=True, blank=True)
     code = models.CharField(_("Code"), default=generate_code, max_length=8,)
     order_status = models.CharField(_("Order Status"), max_length=10, choices=STATUS_CHOICES)
     order_time = models.DateTimeField(_("Order Time"), default=timezone.now)
