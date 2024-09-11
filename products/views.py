@@ -37,6 +37,11 @@ class CategoryList(ListView):
         context["categories"] = Category.objects.all().annotate(product_count=Count('product_category') )
         return context
 
+
+class CategoryDetail(DetailView):
+    model = Category
+
+
 class BrandList(ListView):
     model = Brand
     paginate_by = 1

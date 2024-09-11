@@ -40,6 +40,7 @@ class Product(models.Model):
     slug = models.SlugField(_("Slug"), null=True, blank= True)
     image = models.ImageField(_("Image"), upload_to='Product/')
     quantity = models.IntegerField(_("Quantity"), default=0)
+    video_url = models.URLField(_("VideoUrl"), null=True, blank= True)
 
     # class Meta:
     #     order_by = 'name'
@@ -83,6 +84,12 @@ class Brand(models.Model):
 class Category(models.Model):
     name = models.CharField(_("Name"), max_length=50)
     image = models.ImageField(_("Image"), upload_to='category/')
+    slug = models.SlugField(_("Slug"), null=True, blank= True)
+
+    def save(self, *args,**kwargs):
+        self.slug = slugify(self.name)
+        super(Category, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
     
