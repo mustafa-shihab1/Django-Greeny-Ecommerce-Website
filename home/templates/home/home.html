@@ -618,55 +618,156 @@
                 <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
                     
                     {% for featured_product in featured_products %}
-                    <div class="col">
-                        <div class="feature-card">
-                            <div class="feature-media">
-                                <div class="feature-label">
-                                    <label class="label-text feat">{{featured_product.flag}}</label>
+
+                        <div class="col">
+                            <div class="feature-card">
+                                <div class="feature-media">
+                                    <div class="feature-label">
+                                        <label class="label-text feat">{{featured_product.flag}}</label>
+                                    </div>
+                                    <button class="feature-wish wish">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                    <a class="feature-image" href="product-video.html">
+                                        <img src="{{featured_product.image.url}}" alt="product">
+                                    </a>
+                                    <div class="feature-widget">
+                                        <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
+                                        <a title="Product Video" href="{{featured_product.video_url}}" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>
+                                        <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
+                                    </div>
                                 </div>
-                                <button class="feature-wish wish">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <a class="feature-image" href="product-video.html">
-                                    <img src="{{featured_product.image.url}}" alt="product">
-                                </a>
-                                <div class="feature-widget">
-                                    <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
-                                    <a title="Product Video" href="{{featured_product.video_url}}" class="venobox fas fa-play" data-autoplay="true" data-vbtype="video"></a>
-                                    <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
-                                </div>
-                            </div>
-                            <div class="feature-content">
-                                <h6 class="feature-name">
-                                    <a href="product-video.html">{{featured_product}}</a>
-                                </h6>
-                                <div class="feature-rating">
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="active icofont-star"></i>
-                                    <i class="icofont-star"></i>
-                                    <a href="product-video.html">(3 Reviews)</a>
-                                </div>
-                                <h6 class="feature-price">
-                                    <del>$34</del>
-                                    <span>${{featured_product.price}}<small>/piece</small></span>
-                                </h6>
-                                <p class="feature-desc">{{featured_product.desc|truncatewords:'10'}}</p>
-                                <button class="product-add" title="Add to Cart">
-                                    <i class="fas fa-shopping-basket"></i>
-                                    <span>add</span>
-                                </button>
-                                <div class="product-action">
-                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                    <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
-                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                <div class="feature-content">
+                                    <h6 class="feature-name">
+                                        <a href="product-video.html">{{featured_product}}</a>
+                                    </h6>
+                                    <div class="feature-rating">
+                                        <i class="active icofont-star"></i>
+                                        <i class="active icofont-star"></i>
+                                        <i class="active icofont-star"></i>
+                                        <i class="active icofont-star"></i>
+                                        <i class="icofont-star"></i>
+                                        <a href="product-video.html">(3 Reviews)</a>
+                                    </div>
+                                    <h6 class="feature-price">
+                                        <del>$34</del>
+                                        <span>${{featured_product.price}}<small>/piece</small></span>
+                                    </h6>
+                                    <p class="feature-desc">{{featured_product.desc|truncatewords:'10'}}</p>
+                                    <button class="product-add" title="Add to Cart">
+                                        <i class="fas fa-shopping-basket"></i>
+                                        <span>add</span>
+                                    </button>
+                                    <div class="product-action">
+                                        <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                        <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
+                                        <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <!--=====================================
+                                    PRODUCT VIEW START
+                        =======================================-->
+                        <div class="modal fade" id="product-view">
+                            <div class="modal-dialog"> 
+                                <div class="modal-content">
+                                    <button class="modal-close icofont-close" data-bs-dismiss="modal"></button>
+                                    <div class="product-view">
+                                        <div class="row">
+                                            <div class="col-md-6 col-lg-6">
+                                                <div class="view-gallery">
+                                                    <div class="view-label-group">
+                                                        <label class="view-label feat">{{featured_product.flag}}</label>
+                                                        <label class="view-label off">-10%</label>
+                                                    </div>
+                                                    <ul class="preview-slider slider-arrow">
+                                                        {% for image in featured_product.product_image.all %}
+                                                            <li><img src="{{image.image.url}}" alt="product"></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    <ul class="thumb-slider">
+                                                        {% for image in featured_product.product_image.all %}
+                                                            <li><img src="{{image.image.url}}" alt="product"></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-6">
+                                                <div class="view-details">
+                                                    <h3 class="view-name">
+                                                        <a href="product-video.html">{{featured_product.name}}</a>
+                                                    </h3>
+                                                    <div class="view-meta">
+                                                        <p>SKU:<span>{{featured_product.sku}}</span></p>
+                                                        <p>BRAND:<a href="#">{{featured_product.brand}}</a></p>
+                                                    </div>
+                                                    <div class="view-rating">
+                                                        <i class="active icofont-star"></i>
+                                                        <i class="active icofont-star"></i>
+                                                        <i class="active icofont-star"></i>
+                                                        <i class="active icofont-star"></i>
+                                                        <i class="icofont-star"></i>
+                                                        <a href="product-video.html">(3 reviews)</a>
+                                                    </div>
+                                                    <h3 class="view-price">
+                                                        <del>$38.00</del>
+                                                        <span>${{featured_product.price}}<small>/per kilo</small></span>
+                                                    </h3>
+                                                    <p class="view-desc">{{featured_product.desc|truncatewords:'20'}}</p>
+                                                    <div class="view-list-group">
+                                                        <label class="view-list-title">tags:</label>
+                                                        <ul class="view-tag-list">
+                                                            
+                                                            {% for tag in featured_product.tags.all %}
+                                                                <li><a href="#">{{tag}}</a></li>
+                                                            {% endfor %}
+                                                                
+                                                        </ul>
+                                                    </div>
+                                                    <div class="view-list-group">
+                                                        <label class="view-list-title">Share:</label>
+                                                        <ul class="view-share-list">
+                                                            <li><a href="#" class="icofont-facebook" title="Facebook"></a></li>
+                                                            <li><a href="#" class="icofont-twitter" title="Twitter"></a></li>
+                                                            <li><a href="#" class="icofont-linkedin" title="Linkedin"></a></li>
+                                                            <li><a href="#" class="icofont-instagram" title="Instagram"></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="view-add-group">
+                                                        <button class="product-add" title="Add to Cart">
+                                                            <i class="fas fa-shopping-basket"></i>
+                                                            <span>add to cart</span>
+                                                        </button>
+                                                        <div class="product-action">
+                                                            <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                                            <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">
+                                                            <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="view-action-group">
+                                                        <a class="view-wish wish" href="#" title="Add Your Wishlist">
+                                                            <i class="icofont-heart"></i>
+                                                            <span>add to wish</span>
+                                                        </a>
+                                                        <a class="view-compare" href="compare.html" title="Compare This Item">
+                                                            <i class="fas fa-random"></i>
+                                                            <span>Compare This</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </div> 
+                        </div>
+                        <!--=====================================
+                                    PRODUCT VIEW END
+                        =======================================-->
+
                     {% endfor %}
-                        
                     
                 </div>
                 <div class="row">
