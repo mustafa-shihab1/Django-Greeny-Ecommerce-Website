@@ -9,6 +9,32 @@ from django.contrib.auth.models import User
 
 
 STATUS_CHOICES = (
+    ('Inprogress', 'Inprogress'),
+    ('Completed', 'Completed'),
+)
+
+class CartOrder(models.Model):
+    user = models.ForeignKey(User, verbose_name=_("User"),related_name='user_cart', on_delete=models.SET_NULL, null=True, blank=True)
+    code = models.CharField(_("Code"), default=generate_code, max_length=8,)
+    order_status = models.CharField(_("Order Status"), max_length=10, choices=STATUS_CHOICES)
+    order_time = models.DateTimeField(_("Order Time"), default=timezone.now)
+    delivery_time = models.DateTimeField(_("Delivery Time"),null=True, blank=True)
+    def __str__(self):
+        return self.code
+
+
+class CartDetail(models.Model):
+    order = models.ForeignKey(CartOrder, verbose_name=_("Order"), related_name='cart_detail', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, verbose_name=_("Product"), related_name='cart_product', on_delete=models.SET_NULL, null=True, blank=True)
+    quantity = models.FloatField(_("Quantity"),)
+    price = models.FloatField(_("Price"))
+    def __str__(self):
+        return str(self.order)
+
+
+
+
+STATUS_CHOICES = (
     ('Recieved', 'Recieved'),
     ('Processed', 'Processed'),
     ('Shipped', 'Shipped'),
