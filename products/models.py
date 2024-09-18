@@ -6,6 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
 from django.urls import reverse
+from django.db.models.aggregates import Avg
 
 # Create your models here.
 
@@ -54,6 +55,17 @@ class Product(models.Model):
     def get_absolute_url(self):
         #   url 'base-url:sub-url' filed-name
         return reverse('products:product_detail', kwargs={'slug': self.slug})
+    
+    def get_avg_review(self):
+        avg = self.product_review.aggregate(myAvg=Avg('rate'))
+        # @ another way to get review avg @
+        # rate_sum = 0
+        # product_reviews = self.product_review.all()
+        # for review in product_reviews:
+        #     rate_sum += review.rate
+        # return (rate_sum/len(product_reviews))
+        return avg
+
     
     
     def __str__(self):
