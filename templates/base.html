@@ -514,12 +514,12 @@
                 {% for item in cart_details %}
                     <li class="cart-item">
                         <div class="cart-media">
-                            <a href="#"><img src="images/product/01.jpg" alt="product"></a>
+                            <a href="#"><img src="{{item.product.image.url}}" alt="product"></a>
                             <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
                         </div>
                         <div class="cart-info-group">
                             <div class="cart-info">
-                                <h6><a href="product-single.html">{{item}}</a></h6>
+                                <h6><a href="{% url 'products:product_detail' item.product.slug %}">{{item.product}}</a></h6>
                                 <p>Unit Price - ${{item.price}}</p>
                             </div>
                             <div class="cart-action-group">
@@ -528,7 +528,7 @@
                                     <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{item.quantity}}">
                                     <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
                                 </div>
-                                <h6>$56.98</h6>
+                                <h6>${{item.total}}</h6>
                             </div>
                         </div>
                     </li> 
@@ -544,7 +544,7 @@
                 </form>
                 <a class="cart-checkout-btn" href="checkout.html">
                     <span class="checkout-label">Proceed to Checkout</span>
-                    <span class="checkout-price">$369.78</span>
+                    <span class="checkout-price">${{cart.get_total}}</span>
                 </a>
             </div>
         </aside>
