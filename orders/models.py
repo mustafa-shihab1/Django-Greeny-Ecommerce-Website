@@ -4,7 +4,7 @@ from django.utils.translation import gettext as _
 from products.models import Product
 from utils.generate_code import generate_code
 from django.contrib.auth.models import User
-from django.db.models.aggregates import Sum
+from django.db.models.aggregates import Sum, Count
 
 # Create your models here.
 
@@ -26,6 +26,10 @@ class CartOrder(models.Model):
             total += product.total
         return total
 
+    def get_total_items(self):
+        total_items = self.cart_detail.aggregate(mytotal=Count('product'))
+        return total_items
+        
     def __str__(self):
         return self.code
     
