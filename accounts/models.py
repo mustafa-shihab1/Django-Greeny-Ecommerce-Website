@@ -1,4 +1,5 @@
 from django.db import models
+from products.models import Product
 from settings.models import Country, City
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
@@ -14,6 +15,7 @@ class Profile(models.Model):
     image = models.ImageField(upload_to='profile/', null=True, blank=True)
     code = models.CharField(default=generate_code, max_length=8)
     code_used = models.BooleanField(default=False)
+    favourites = models.ManyToManyField(Product, related_name="favourite_product", null=True, blank=True)
 
     def __str__(self):
         return self.user.username
