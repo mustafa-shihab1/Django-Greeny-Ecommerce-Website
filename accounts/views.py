@@ -63,3 +63,10 @@ def profile(request):
    phone_number = UserPhoneNumber.objects.filter(user=request.user)
    user_address = UserAddress.objects.filter(user=request.user)
    return render(request,'registration/profile.html',{'profile':profile, 'phone_number':phone_number, 'user_address':user_address})
+
+
+@login_required
+def wishlist(request):
+   profile = Profile.objects.get(user = request.user)
+
+   return render(request,'registration/wishlist.html',{'profile':profile} )
