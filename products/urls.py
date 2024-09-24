@@ -1,10 +1,11 @@
 from django.urls import path
-from .views import ProductList, ProductDetail, CategoryList, BrandList, BrandDetail, product_list, CategoryDetail
+from .views import ProductList, ProductDetail, CategoryList, BrandList, BrandDetail, product_list, CategoryDetail, add_to_favourites
 
 app_name = 'products'
 
 urlpatterns = [
     path('',ProductList.as_view(),name='product_list'),
+    path('add_to_wish/', add_to_favourites, name='add_to_favourites'),
     path('test',product_list),
     path('<slug:slug>',ProductDetail.as_view(),name='product_detail'),
     path('category/',CategoryList.as_view(),name='category_list'),

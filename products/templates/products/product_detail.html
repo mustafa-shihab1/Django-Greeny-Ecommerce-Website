@@ -112,19 +112,27 @@
                                 </ul>
                             </div>
                             <div class="details-add-group">
-                                <form method="post" action="{% url 'orders:add_to_cart' %}">
-                                    {% csrf_token %}
-                                    <input class="quantity-input myinput" title="Quantity Number" type="number" name="quantity">
-                                        <input class="product-add myinput" title="Add to Cart" type="submit" value="add to cart">
-                                        <input type="hidden" name="productid" value="{{object.id}}">
-                                        <i class="fas fa-shopping-basket"></i>
-                                </form>
+                                
+                                {% if object.quantity > 1 %}
+                                    <form method="post" action="{% url 'orders:add_to_cart' %}">
+                                        {% csrf_token %}
+                                        <input class="quantity-input myinput" title="Quantity Number" type="number" name="quantity">
+                                            <input class="product-add myinput" title="Add to Cart" type="submit" value="add to cart">
+                                            <input type="hidden" name="productid" value="{{object.id}}">
+                                            <i class="fas fa-shopping-basket"></i>
+                                    </form>
+                                {% else %}
+                                    <h6>stock out</h6>
+                                {% endif %}
+                                    
+                                
                             </div>
                             <div class="details-action-group">
-                                <a class="details-wish wish" href="#" title="Add Your Wishlist">
-                                    <i class="icofont-heart"></i>
-                                    <span>add to wish</span>
-                                </a>
+                                <form action="{% url 'products:add_to_favourites' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="productid" value="{{object.id}}">
+                                    <input type="submit" class="details-wish wish" value="add to wish">
+                                </form>
                                 <a class="details-compare" href="compare.html" title="Compare This Item">
                                     <i class="fas fa-random"></i>
                                     <span>Compare This</span>

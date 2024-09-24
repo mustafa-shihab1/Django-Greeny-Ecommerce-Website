@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
+
+from accounts.models import Profile
 from .models import Product, ProductImages, Review, Category, Brand
 from django.db.models import F, Q, Func, Value, CharField
 from django.db.models.aggregates import Count, Min, Max, Avg, Sum
@@ -76,7 +78,12 @@ def add_review(request):
     pass
 
 
-
 @login_required
 def add_to_favourites(request):
-    pass
+    product = Product.objects.get(id=request.POST['productid'])
+    profile = Profile.objects.get(user=request.user)
+
+    if product in profile.favourites.all():
+        profile.favourites.remove(product)
+    else:
+        profile.favourites.add(product)
