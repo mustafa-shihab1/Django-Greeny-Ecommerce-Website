@@ -11,11 +11,11 @@ from utils.generate_code import generate_code
 # Create your models here.
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, related_name='Profile', on_delete= models.CASCADE)
-    image = models.ImageField(upload_to='profile/', null=True, blank=True)
-    code = models.CharField(default=generate_code, max_length=8)
-    code_used = models.BooleanField(default=False)
-    favourites = models.ManyToManyField(Product, related_name="favourite_product", null=True, blank=True)
+    user = models.OneToOneField(User,verbose_name=_("User"), related_name='Profile', on_delete= models.CASCADE)
+    image = models.ImageField(_("Image"), upload_to='profile/', null=True, blank=True)
+    code = models.CharField(_("Code"),default=generate_code, max_length=8)
+    code_used = models.BooleanField(_("Code used"), default=False)
+    favourites = models.ManyToManyField(Product, verbose_name=_("Favourites"), related_name="favourite_product", null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -39,9 +39,9 @@ DATA_TYPE=(
 
 
 class UserPhoneNumber(models.Model):
-    user = models.ForeignKey(User, related_name='UserPhone', on_delete= models.CASCADE)
-    phone_number = models.CharField(max_length=15)
-    type = models.CharField(max_length=10, choices=DATA_TYPE)
+    user = models.ForeignKey(User,verbose_name=_("User"), related_name='UserPhone', on_delete= models.CASCADE)
+    phone_number = models.CharField(_("Phone Number"), max_length=15)
+    type = models.CharField(_("Type"),max_length=10, choices=DATA_TYPE)
 
     def __str__(self):
         return f"{self.user.username} - {self.type}"
@@ -49,10 +49,10 @@ class UserPhoneNumber(models.Model):
 
 
 class UserAddress(models.Model):
-    user = models.ForeignKey(User, related_name='UserAddress', on_delete= models.CASCADE)
-    type = models.CharField(max_length=10, choices=DATA_TYPE)
-    country = models.ForeignKey(Country, on_delete=models.SET_NULL, related_name='user_country', null= True)
-    city = models.ForeignKey(City, on_delete=models.SET_NULL, related_name='user_city', null= True)
+    user = models.ForeignKey(User,verbose_name=_("User"), related_name='UserAddress', on_delete= models.CASCADE)
+    type = models.CharField(_("Type"), max_length=10, choices=DATA_TYPE)
+    country = models.ForeignKey(Country, verbose_name=_("Country"), on_delete=models.SET_NULL, related_name='user_country', null= True)
+    city = models.ForeignKey(City, verbose_name=_("City"), on_delete=models.SET_NULL, related_name='user_city', null= True)
     state = models.CharField(_("State"), max_length=50)
     region = models.CharField(_("Region"), max_length=50)
     street = models.CharField(_("Street"), max_length=50)

@@ -35,13 +35,13 @@ class Product(models.Model):
     brand = models.ForeignKey('Brand', related_name='product_brand', verbose_name=_("Brand"), on_delete=models.SET_NULL, null=True, blank= True)
     price = models.FloatField(_("Price"))
     desc = models.TextField(_("Desc"), max_length=10000)
-    tags = TaggableManager(blank=True)
+    tags = TaggableManager(_("Tags"),blank=True)
     flag = models.CharField(_("Flag"), max_length=10, choices=FLAG_TYPE)
     category = models.ForeignKey('Category', related_name='product_category', verbose_name=_("Category"), on_delete=models.SET_NULL, null=True, blank= True)
     slug = models.SlugField(_("Slug"), null=True, blank= True)
     image = models.ImageField(_("Image"), upload_to='Product/')
     quantity = models.IntegerField(_("Quantity"), default=0)
-    video_url = models.URLField(_("VideoUrl"), null=True, blank= True)
+    video_url = models.URLField(_("Video Url"), null=True, blank= True)
 
     # class Meta:
     #     order_by = 'name'
