@@ -1,0 +1,195 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-25 21:33+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+#: .\accounts\models.py:14 .\accounts\models.py:42 .\accounts\models.py:52
+#: .\orders\models.py:18 .\orders\models.py:58 .\products\models.py:110
+msgid "User"
+msgstr "المستخدم"
+
+#: .\accounts\models.py:15 .\home\models.py:9 .\products\models.py:42
+#: .\products\models.py:77 .\products\models.py:84 .\products\models.py:98
+msgid "Image"
+msgstr "الصورة"
+
+#: .\accounts\models.py:16 .\orders\models.py:19 .\orders\models.py:59
+msgid "Code"
+msgstr "الكود"
+
+#: .\accounts\models.py:17
+msgid "Code used"
+msgstr "الكود مستخدم"
+
+#: .\accounts\models.py:18
+msgid "Favourites"
+msgstr "المفضلة"
+
+#: .\accounts\models.py:43 .\settings\models.py:36
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#: .\accounts\models.py:44 .\accounts\models.py:53
+msgid "Type"
+msgstr "النوع"
+
+#: .\accounts\models.py:54 .\settings\models.py:18
+msgid "Country"
+msgstr "الدولة"
+
+#: .\accounts\models.py:55
+msgid "City"
+msgstr "المدينة"
+
+#: .\accounts\models.py:56
+msgid "State"
+msgstr "الولاية"
+
+#: .\accounts\models.py:57
+msgid "Region"
+msgstr "المنطقة"
+
+#: .\accounts\models.py:58
+msgid "Street"
+msgstr "الشارع"
+
+#: .\accounts\models.py:59
+msgid "Notes"
+msgstr "الملاحظات"
+
+#: .\home\models.py:7
+msgid "Title"
+msgstr "العنوان"
+
+#: .\home\models.py:8
+msgid "Sub-title"
+msgstr "العنوان الفرعي"
+
+#: .\home\models.py:10
+msgid "Active"
+msgstr "مفعَل"
+
+#: .\orders\models.py:20 .\orders\models.py:60
+msgid "Order Status"
+msgstr "حالة الطلب"
+
+#: .\orders\models.py:39 .\orders\models.py:68
+msgid "Order"
+msgstr "الطلب"
+
+#: .\orders\models.py:40 .\orders\models.py:69 .\products\models.py:76
+#: .\products\models.py:111
+msgid "Product"
+msgstr "المنتج"
+
+#: .\orders\models.py:41 .\orders\models.py:70 .\products\models.py:43
+msgid "Quantity"
+msgstr "الكمية"
+
+#: .\orders\models.py:42 .\orders\models.py:71 .\products\models.py:36
+msgid "Price"
+msgstr "السعر"
+
+#: .\orders\models.py:43
+msgid "Total"
+msgstr "المجموع"
+
+#: .\orders\models.py:61
+msgid "Order Time"
+msgstr "وقت الطلب"
+
+#: .\orders\models.py:62
+msgid "Delivery Time"
+msgstr "وقت التوصيل"
+
+#: .\products\models.py:33 .\products\models.py:83 .\products\models.py:97
+#: .\settings\models.py:7 .\settings\models.py:19 .\settings\models.py:29
+msgid "Name"
+msgstr "الاسم"
+
+#: .\products\models.py:34
+msgid "SKU"
+msgstr "اس-كيو"
+
+#: .\products\models.py:35
+msgid "Brand"
+msgstr "البراند"
+
+#: .\products\models.py:37
+msgid "Desc"
+msgstr "التفاصيل"
+
+#: .\products\models.py:38
+msgid "Tags"
+msgstr "التاغ"
+
+#: .\products\models.py:39
+msgid "Flag"
+msgstr "الحالة"
+
+#: .\products\models.py:40
+msgid "Category"
+msgstr "التصنيف"
+
+#: .\products\models.py:41 .\products\models.py:85 .\products\models.py:99
+msgid "Slug"
+msgstr ""
+
+#: .\products\models.py:44
+msgid "Video Url"
+msgstr "لينك الفيديو"
+
+#: .\products\models.py:112
+msgid "Review"
+msgstr "التعليق"
+
+#: .\products\models.py:113
+msgid "Rate"
+msgstr "التقييم"
+
+#: .\products\models.py:117
+msgid "Created at"
+msgstr "تاريخ الإضافة"
+
+#: .\settings\models.py:30
+msgid "Logo"
+msgstr "الشعار"
+
+#: .\settings\models.py:31
+msgid "About"
+msgstr "تفاصيل"
+
+#: .\settings\models.py:32
+msgid "Facebook Link"
+msgstr "لينك فيسبوك"
+
+#: .\settings\models.py:33
+msgid "Twitter Link"
+msgstr "لينك تويتر"
+
+#: .\settings\models.py:34
+msgid "Instagram Link"
+msgstr "لينك انستغرام"
+
+#: .\settings\models.py:35
+msgid "Email"
+msgstr "الايميل"
+
+#: .\settings\models.py:37
+msgid "Address"
+msgstr "العنوان"
