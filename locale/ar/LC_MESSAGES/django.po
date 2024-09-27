@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-27 08:30+0300\n"
+"POT-Creation-Date: 2024-09-27 08:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -167,6 +167,14 @@ msgstr "التقييم"
 msgid "Created at"
 msgstr "تاريخ الإضافة"
 
+#: .\project\settings.py:139
+msgid "English"
+msgstr "الإنجليزية"
+
+#: .\project\settings.py:140
+msgid "Arabic"
+msgstr "العربية"
+
 #: .\settings\models.py:30
 msgid "Logo"
 msgstr "الشعار"
@@ -195,6 +203,6 @@ msgstr "الايميل"
 msgid "Address"
 msgstr "العنوان"
 
-#: .\templates\base.html:752
+#: .\templates\base.html:763
 msgid "contact us"
 msgstr "تواصل معنا"
