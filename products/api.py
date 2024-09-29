@@ -13,12 +13,12 @@ def product_list_api(request):
     return Response({'Success':True, 'Product-List':data})  # ---> return json
 
 
-
-class ProductListAPI(generics.ListAPIView):
+# list and create
+class ProductListAPI(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-
-class ProductDetialAPI(generics.RetrieveUpdateDestroyAPIView):
+# retrieve, update and delete
+class ProductDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
