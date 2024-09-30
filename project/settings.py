@@ -44,6 +44,12 @@ INSTALLED_APPS = [
     'django_summernote',
     'debug_toolbar',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_swagger',
+    'rest_framework_simplejwt',
+
+
+    'dj_rest_auth',
 
 
     
@@ -184,3 +190,9 @@ INTERNAL_IPS = [
 #         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 #     ]
 # }
+
+
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'jwt-auth',
+}

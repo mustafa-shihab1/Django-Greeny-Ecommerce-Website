@@ -30,6 +30,7 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')), # django-auth-views url
     path('__debug__/',include('debug_toolbar.urls')),
     path("i18n/", include("django.conf.urls.i18n")),       # django translation
+    path('rest-auth/', include('dj_rest_auth.urls')),
 
 ]
 
