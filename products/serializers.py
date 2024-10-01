@@ -24,6 +24,13 @@ class ProductSerializer(serializers.ModelSerializer):
     category = serializers.StringRelatedField()
     brand = BrandSerializer()
 
+# HyperlinkedRelatedField: to return a link that provide us with category details
+# view_name -> the namespace of the view in urls.py file
+    # category = serializers.HyperlinkedRelatedField(
+    #     read_only = 'True',
+    #     view_name = 'category_api_detail',
+    # )
+
     price_with_tax = serializers.SerializerMethodField(method_name='price_tax_calc')
 
     def price_tax_calc(self, product:Product):
