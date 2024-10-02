@@ -25,3 +25,16 @@ class ProductSerializer(serializers.ModelSerializer):
     price_with_tax = serializers.SerializerMethodField(method_name='price_tax_calc')
     def price_tax_calc(self, product:Product):
         return product.price * 1.1
+
+
+class BrandSerializerDetail(serializers.ModelSerializer):
+    products = ProductSerializer(source='product_brand', many=True)
+    class Meta:
+        model = Brand
+        fields = (['name','image','products'])
+
+class CategorySerializerDetail(serializers.ModelSerializer):
+    products = ProductSerializer(source='product_category', many=True)
+    class Meta:
+        model = Category
+        fields = (['name','image','products'])
