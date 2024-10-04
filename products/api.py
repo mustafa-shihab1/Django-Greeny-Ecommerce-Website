@@ -1,11 +1,13 @@
 from rest_framework import generics
 from .serializers import ProductSerializer, CategorySerializer, BrandSerializer, BrandSerializerDetail, CategorySerializerDetail, ReviewSerializer, ProductSerializerDetail
 from .models import Product, Category, Brand, Review
+from .pagination import MyPagination
 
 
 class ProductListAPI(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    pagination_class = MyPagination
 
 class ProductDetailAPI(generics.RetrieveAPIView):
     queryset = Product.objects.all()
