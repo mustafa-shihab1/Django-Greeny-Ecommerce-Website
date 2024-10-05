@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_framework_simplejwt',
+    'django_filters',
 
 
     'dj_rest_auth',
@@ -63,7 +64,8 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK ={
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 100
+    'PAGE_SIZE': 100,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 
