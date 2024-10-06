@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'debug_toolbar',
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework.authtoken',     # token authentication -> then use migrate command 
     'rest_framework_swagger',
     'rest_framework_simplejwt',
     'django_filters',
@@ -66,6 +66,9 @@ REST_FRAMEWORK ={
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 100,
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
 }
 
 
