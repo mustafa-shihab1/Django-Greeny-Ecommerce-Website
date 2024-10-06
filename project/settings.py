@@ -43,7 +43,14 @@ INSTALLED_APPS = [
     'taggit',
     'django_summernote',
     'debug_toolbar',
+    'rest_framework',
+    'rest_framework.authtoken',     # token authentication -> then use migrate command 
+    'rest_framework_swagger',
+    'rest_framework_simplejwt',
+    'django_filters',
 
+
+    'dj_rest_auth',
 
     
     'products',
@@ -52,6 +59,20 @@ INSTALLED_APPS = [
     'home',
     
 ]
+
+
+
+REST_FRAMEWORK ={
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100,
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'ar'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -174,3 +195,18 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
+
+
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'jwt-auth',
+}
