@@ -3,6 +3,7 @@ from .serializers import ProductSerializer, CategorySerializer, BrandSerializer,
 from .models import Product, Category, Brand, Review
 from .pagination import MyPagination
 from django_filters.rest_framework import DjangoFilterBackend
+from .filters import ProductFilter
 
 
 class ProductListAPI(generics.ListAPIView):
@@ -10,7 +11,7 @@ class ProductListAPI(generics.ListAPIView):
     serializer_class = ProductSerializer
     pagination_class = MyPagination
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['name']
+    filterset_class = ProductFilter
 
 class ProductDetailAPI(generics.RetrieveAPIView):
     queryset = Product.objects.all()
