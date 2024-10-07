@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'orders',
     'settings',
     'home',
+    'todo',
     
 ]
 
