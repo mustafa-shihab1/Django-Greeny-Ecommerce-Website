@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 
     'dj_rest_auth',
 
-    
+
     'products',
     'orders',
     'settings',
@@ -100,10 +100,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'settings.site_context_processor.get_site_info',
-                'accounts.user_context_processor.get_user',
-                'products.products_context_processor.get_brands',
-                'orders.cart_context_processor.get_or_create_cart',
+                # 'settings.site_context_processor.get_site_info',
+                # 'accounts.user_context_processor.get_user',
+                # 'products.products_context_processor.get_brands',
+                # 'orders.cart_context_processor.get_or_create_cart',
             ],
         },
     },
