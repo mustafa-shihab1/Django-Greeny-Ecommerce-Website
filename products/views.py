@@ -48,7 +48,7 @@ class CategoryDetail(DetailView):
 
 class BrandList(ListView):
     model = Brand
-    paginate_by = 1
+    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
