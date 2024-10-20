@@ -34,12 +34,12 @@ class ProductDetail(DetailView):
 
 class CategoryList(ListView):
     model = Category
-    paginate_by = 1
+    paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["categories"] = Category.objects.all().annotate(product_count=Count('product_category') )
-        return context
+    def get_queryset(self):
+        queryset = super(CategoryList, self).get_queryset()
+        queryset = Category.objects.all().annotate(product_count=Count('product_category') )
+        return queryset
 
 
 class CategoryDetail(DetailView):
