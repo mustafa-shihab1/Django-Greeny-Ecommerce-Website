@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
+from django.urls import reverse
 
 from accounts.models import Profile
 from .models import Product, ProductImages, Review, Category, Brand
@@ -7,6 +8,7 @@ from django.db.models import F, Q, Func, Value, CharField
 from django.db.models.aggregates import Count, Min, Max, Avg, Sum
 from django.db.models.functions import Concat
 from django.contrib.auth.decorators import login_required
+from .forms import ReviewForm
 
 
 # Create your views here.
@@ -74,8 +76,18 @@ def product_list(request):
 
 
 @login_required
-def add_review(request):
-    pass
+def add_review(request, slug):
+    product = Product.objects.get(slug = slug)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            myform = form.save(commit=False)
+            myform.user = request.user
+            myform.product = product
+            myform.save()
+
+            return redirect(reverse('products:product_detail', kwargs={'slug':slug}))
+
 
 
 @login_required
